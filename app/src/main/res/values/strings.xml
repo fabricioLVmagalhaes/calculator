@@ -16,4 +16,5 @@
     <string name="_9">9</string>
     <string name="_4">4</string>
     <string name="equals">=</string>
+    <string name="neg">NEG</string>
 </resources>
