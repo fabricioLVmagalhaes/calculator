@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         val buttonMinus = findViewById<Button>(R.id.buttonMinus)
         val buttonPlus = findViewById<Button>(R.id.buttonPlus)
 
-        val listener = View.OnClickListener { v->
+        val listener = View.OnClickListener { v ->
             val b = v as Button
             newNumber.append(b.text)
         }
@@ -62,6 +63,26 @@ class MainActivity : AppCompatActivity() {
         button9.setOnClickListener(listener)
         buttonDot.setOnClickListener(listener)
 
+        val opListener = View.OnClickListener { v ->
+            val op = (v as Button).text.toString()
+            val value = newNumber.text.toString()
+            if (value.isNotEmpty()) {
+                performOperation(value, op)
+            }
+            pendingOperation = op
+            displyOperation.text = pendingOperation
+        }
 
+        buttonEquals.setOnClickListener(opListener)
+        buttonDivide.setOnClickListener(opListener)
+        buttonMultiply.setOnClickListener(opListener)
+        buttonMinus.setOnClickListener(opListener)
+        buttonPlus.setOnClickListener(opListener)
+
+
+    }
+
+    private fun performOperation(value: String, operation: String){
+        displyOperation.text =  operation
     }
 }
